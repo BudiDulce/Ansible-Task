@@ -1,6 +1,5 @@
 # Ansible-Task
-Contains Frontend.yaml and the docker.yaml files =inventory.ini file 
- مشروعي في Ansible على AWS EC2
+Contains Frontend.yaml and the docker.yaml files =inventory.ini file مشروعي في Ansible على AWS EC2
 
 يا هلا بيك! ده المشروع بتاعي اللي فيه Ansible Playbooks عشان أتحكم في تلاتة EC2 instances على AWS. المشروع ده بيبين إزاي قدرت أعمل Automation لشويه شغل باستخدام Ansible.
 
@@ -52,5 +51,3 @@ Security Group للـ Docker-ec2
 frontend_machine ansible_host=54.82.0.61  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/Trial.pem
 [docker_servers]
 docker_machine ansible_host=54.174.84.205  ansible_user=ubuntu ansible_ssh_private_key_file=~/.ssh/Trial.pem
-   
-

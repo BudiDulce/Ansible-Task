@@ -1,7 +1,8 @@
 # Ansible-Task
-Contains Frontend.yaml and the docker.yaml files =inventory.ini file مشروعي في Ansible على AWS EC2
+Contains Frontend.yaml and the docker.yaml files =inventory.ini file
+ مشروعي في Ansible على AWS EC2
 
-يا هلا بيك! ده المشروع بتاعي اللي فيه Ansible Playbooks عشان أتحكم في تلاتة EC2 instances على AWS. المشروع ده بيبين إزاي قدرت أعمل Automation لشويه شغل باستخدام Ansible.
+ ده المشروع بتاعي اللي فيه Ansible Playbooks عشان أتحكم في تلاتة EC2 instances على AWS. المشروع ده بيبين إزاي قدرت أعمل Automation لشويه شغل باستخدام Ansible.
 
  إيه اللي أنا استخدمته؟
 

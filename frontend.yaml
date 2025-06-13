@@ -1,0 +1,58 @@
+
+- name: Configure Frontend Machine
+  hosts: frontend_servers
+  become: yes
+  tasks:
+    - name: Check RAM
+      ansible.builtin.fail:
+        msg: "RAM is less than 1GB. Please upgrade the machine."
+      when: ansible_memtotal_mb < 1024
+
+    - name: Install NGINX
+      apt:
+         name: nginx
+         state: present
+         update_cache: yes
+         
+    - name: Install common utilities (vim, curl, git)
+      ansible.builtin.apt:
+        name: "{{ item }}"
+        state: present
+      loop:
+        - vim
+        - curl
+        - git
+      when: ansible_distribution == "Ubuntu"
+
+    - name: Create a simple HTML file
+      ansible.builtin.copy:
+        content: |
+          <!DOCTYPE html>
+          <html>
+          <head>
+              <title>Welcome to Frontend!</title>
+          </head>
+          <body>
+              <h1>Hello Konectafrom Ansible configured Frontend!</h1>
+              <p>This page is served by NGINX.</p>
+          </body>
+          </html>
+        dest: /var/www/html/index.nginx-debian.html
+        mode: '0644'
+      notify: Restart NGINX
+
+    - name: Ensure NGINX default config is linked to our page (optional, depending on setup)
+      ansible.builtin.file:
+        src: /var/www/html/index.nginx-debian.html
+        dest: /var/www/html/index.html
+        state: link
+        force: yes
+      when: not ansible_check_mode
+      notify: Restart NGINX
+
+  handlers: 
+    - name: Restart NGINX
+      ansible.builtin.service:
+        name: nginx
+        state: restarted
+      when: ansible_distribution == "Ubuntu"
